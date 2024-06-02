@@ -1,4 +1,6 @@
 const CopyPlugin = require('copy-webpack-plugin')
+const HtmlPlugin = require('html-webpack-plugin')
+const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin')
 const path = require('path')
 
 function transformManifestVersion(content) {
@@ -14,7 +16,9 @@ function createConfig({ buildingManifestV2 }) {
         mode,
         context,
         devtool:
-            mode === 'development' ? 'eval-source-map' : 'hidden-source-map',
+            mode === 'development'
+                ? 'inline-cheap-module-source-map'
+                : 'hidden-source-map',
         entry: {
             background: buildingManifestV2
                 ? './src/background/index.mv2.ts'
@@ -33,7 +37,34 @@ function createConfig({ buildingManifestV2 }) {
                         to: './manifest.json',
                         transform: transformManifestVersion,
                     },
+                    {
+                        from: 'node_modules/webextension-polyfill/dist/browser-polyfill.js',
+                        to: 'lib/',
+                    },
+                    { from: 'img', to: 'img' },
                 ],
+            }),
+            new HtmlPlugin({
+                title: 'Popup',
+                chunks: ['popup'],
+                filename: 'popup.html',
+                template: path.resolve(
+                    context,
+                    'src/popup/index.template.html',
+                ),
+            }),
+            new HtmlPlugin({
+                title: 'Web Ext Options',
+                chunks: ['options'],
+                filename: 'options.html',
+                template: path.resolve(
+                    context,
+                    'src/options/index.template.html',
+                ),
+            }),
+            new HtmlWebpackTagsPlugin({
+                append: false,
+                tags: ['lib/browser-polyfill.js'],
             }),
         ],
         module: {

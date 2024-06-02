@@ -5,9 +5,9 @@
     "description": "Starter for web extensions",
     "manifest_version": 3,
     "icons": {
-        "16": "./img/browserIcons/logo-16.png",
-        "48": "./img/browserIcons/logo-48.png",
-        "128": "./img/browserIcons/logo-128.png"
+        "16": "./img/browser-icons/logo-16.png",
+        "48": "./img/browser-icons/logo-48.png",
+        "128": "./img/browser-icons/logo-128.png"
     },
     "background": {
         "service_worker": "background.js"
@@ -27,9 +27,9 @@
         "default_popup": "./popup.html",
         "default_title": "Web Ext Starter",
         "default_icon": {
-            "16": "./img/browserIcons/logo-16.png",
-            "48": "./img/browserIcons/logo-48.png",
-            "128": "./img/browserIcons/logo-128.png"
+            "16": "./img/browser-icons/logo-16.png",
+            "48": "./img/browser-icons/logo-48.png",
+            "128": "./img/browser-icons/logo-128.png"
         }
     },
     "content_security_policy": {
