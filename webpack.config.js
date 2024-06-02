@@ -22,7 +22,7 @@ function createConfig({ buildingManifestV2 }) {
         entry: {
             background: buildingManifestV2
                 ? './src/background/index.mv2.ts'
-                : './src/background/index.ts',
+                : './src/background/index.mv3.ts',
             popup: './src/popup/index.tsx',
             options: './src/options/index.tsx',
             content_script: './src/content-scripts/index.ts',

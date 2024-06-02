@@ -1,7 +1,7 @@
 import setupBackgroundScript from '.'
 
 async function main() {
-    await setupBackgroundScript({ manifestVersion: 2 })
+    await setupBackgroundScript({ manifestVersion: 3 })
 }
 
 try {

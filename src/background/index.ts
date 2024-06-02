@@ -1,10 +1,9 @@
-async function main() {
-    console.log('hi there BG')
+export interface BGScriptOptions {
+    manifestVersion: 2 | 3
 }
 
-try {
-    await main()
-} catch (err) {
-    console.error('= = = Top level error handler caught unhandled error: = = =')
-    throw err
+export default async function setupBackgroundScript({
+    manifestVersion,
+}: BGScriptOptions) {
+    console.log('hi there BG - mv', manifestVersion)
 }
