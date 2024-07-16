@@ -1,6 +1,5 @@
 {
     "name": "Web Ext Starter",
-    "short_name": "web-ext-starter",
     "version": "0.0.1",
     "description": "Starter for web extensions",
     "manifest_version": 2,
@@ -10,23 +9,29 @@
         "128": "./img/browser-icons/logo-128.png"
     },
     "background": {
-        "scripts": ["lib/browser-polyfill.js", "background.js"]
+        "scripts": [
+            "node_modules/webextension-polyfill/dist/browser-polyfill.js",
+            "src/background/index.mv2.ts"
+        ]
     },
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
-            "js": ["lib/browser-polyfill.js", "content_script.js"],
+            "js": [
+                "node_modules/webextension-polyfill/dist/browser-polyfill.js",
+                "src/content-scripts/index.ts"
+            ],
             "css": [],
             "run_at": "document_end"
         }
     ],
     "options_ui": {
-        "page": "./options.html",
+        "page": "src/options/index.html",
         "open_in_tab": true
     },
     "browser_action": {
         "default_title": "Web Ext Starter",
-        "default_popup": "./popup.html"
+        "default_popup": "src/popup/index.html"
     },
     "content_security_policy": "script-src 'self'; object-src 'self'; connect-src http: https: data: blob: wss: file:",
     "permissions": ["<all_urls>"]
